@@ -1416,7 +1416,7 @@ the specific language governing permissions and limitations under the Apache Lic
                     var dropdown = $("#select2-drop"), self;
                     if (dropdown.length > 0) {
                         self=dropdown.data("select2");
-                        if (self.opts.selectOnBlur) {
+                        if (self.opts.selectOnBlur()) {
                             self.selectHighlighted({noFocus: true});
                         }
                         self.close();
@@ -1839,7 +1839,7 @@ the specific language governing permissions and limitations under the Apache Lic
         // abstract
         blur: function () {
             // if selectOnBlur == true, select the currently highlighted option
-            if (this.opts.selectOnBlur)
+            if (this.opts.selectOnBlur())
                 this.selectHighlighted({noFocus: true});
 
             this.close();
@@ -3471,7 +3471,7 @@ the specific language governing permissions and limitations under the Apache Lic
         tokenizer: defaultTokenizer,
         escapeMarkup: defaultEscapeMarkup,
         blurOnChange: false,
-        selectOnBlur: false,
+        selectOnBlur: function() { return false; },
         adaptContainerCssClass: function(c) { return c; },
         adaptDropdownCssClass: function(c) { return null; },
         nextSearchTerm: function(selectedObject, currentSearchTerm) { return undefined; },
